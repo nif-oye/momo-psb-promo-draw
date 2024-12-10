@@ -23,6 +23,10 @@ body {
   background-repeat: no-repeat;
   color: #FFD700;
   overflow: hidden;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .container {
@@ -38,12 +42,17 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 90%;
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
 }
 
 #tag {
   font-size: 2rem;
   margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  font-size: 1.5rem;
 }
 
 .slot-machine {
@@ -51,15 +60,17 @@ body {
   justify-content: center;
   margin-bottom: 30px;
   gap: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .wheel {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: white;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
@@ -138,7 +149,7 @@ button:hover::before {
 }
 
 .logo {
-  width: 200px;
+  width: 150px;
 }
 
 .shuffle {
