@@ -29,14 +29,11 @@ body {
   width: 90%;
   background: rgba(25, 87, 124, .85);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(7.7px);
-  -webkit-backdrop-filter: blur(7.7px);
   border: 1px solid rgba(25, 87, 124, 1);
 }
 
 .logo {
   width: 140px;
-  /* margin-bottom: 20px; */
 }
 
 #tag {
@@ -62,10 +59,8 @@ body {
   padding: 25px 20px;
   background: rgba(255, 215, 0, 0.08);
   border-radius: 10px;
-  /* box-shadow: 0 0 18px rgba(255, 215, 0, 0.4); */
   border: 1px solid #fff;
   margin-bottom: 18px;
-  /* text-shadow: 0 0 12px rgba(255, 215, 0, 0.8); */
 }
 
 #nameDisplay {
@@ -102,8 +97,6 @@ button {
 button:hover {
   background: #19577c;
   color: #fff;
-  /* background: #FFD700;
-  color: #000; */
   transform: translateY(-3px) scale(1.04);
   box-shadow: 0 0 10px #fff, 0 0 20px #fff;
 }
@@ -111,6 +104,7 @@ button:hover {
 button img {
   width: 24px;
   height: 24px;
+  transition: opacity 0.3s ease;
 }
 
 button.primary {
@@ -125,11 +119,6 @@ button.primary:hover {
   background: #19577c;
   color: #FFD700;
   box-shadow: 0 0 10px #fff, 0 0 20px #fff;
-  /* border: 2px solid #FFD700; */
-}
-
-button img {
-  transition: opacity 0.3s ease;
 }
 
 button:hover img.default-icon {
@@ -215,7 +204,6 @@ button img.hover-icon {
   0% {
     transform: rotate(0deg);
   }
-
   100% {
     transform: rotate(360deg);
   }
@@ -225,4 +213,72 @@ button img.hover-icon {
   margin-top: 40px;
   font-size: 0.9rem;
   color: #FFD700;
+}
+
+/* MOBILE FRIENDLY RESPONSIVE DESIGN */
+@media (max-width: 480px) {
+  body {
+    padding: 20px;
+    overflow: auto;
+    height: auto;
+  }
+
+  .container {
+    padding: 30px 20px;
+  }
+
+  .logo {
+    width: 100px;
+  }
+
+  #tag {
+    font-size: 1.8rem;
+  }
+
+  .subtext {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+
+  #numberDisplay {
+    font-size: 2.5rem;
+    padding: 18px 14px;
+  }
+
+  #nameDisplay {
+    font-size: 1.4rem;
+  }
+
+  button {
+    font-size: 0.95rem;
+    padding: 12px 18px;
+  }
+
+  button img {
+    width: 20px;
+    height: 20px;
+  }
+
+  button.primary {
+    font-size: 1.1rem;
+    padding: 14px 20px;
+  }
+
+  .modal-content {
+    padding: 20px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.5rem;
+  }
+
+  #downloadResultsBtn {
+    margin-top: 30px;
+    font-size: 12px;
+  }
+
+  .footer {
+    font-size: 0.8rem;
+    margin-top: 30px;
+  }
 }
