@@ -52,7 +52,7 @@ function updateNumberDisplay(number) {
 }
 
 function triggerConfetti() {
-    const duration = 5000;
+    const duration = 8000;
     const end = Date.now() + duration;
 
     const interval = setInterval(() => {
@@ -60,7 +60,7 @@ function triggerConfetti() {
         if (timeLeft <= 0) return clearInterval(interval);
 
         confetti({
-            particleCount: 50 * (timeLeft / duration),
+            particleCount: 200 * (timeLeft / duration),
             startVelocity: 30,
             spread: 360,
             ticks: 60,

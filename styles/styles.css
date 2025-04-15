@@ -11,8 +11,7 @@
 body {
   font-family: 'MTNBrighterSansRegular', Arial, sans-serif;
   margin: 0;
-  background: linear-gradient(120deg, #000000dd, #222222dd),
-    url('../images/NWD.png') no-repeat center/cover;
+  background: url('../images/MoMo-BG22.png') no-repeat center/cover;
   color: #FFD700;
   display: flex;
   justify-content: center;
@@ -61,7 +60,7 @@ body {
   background: rgba(255, 215, 0, 0.08);
   border-radius: 20px;
   box-shadow: 0 0 18px rgba(255, 215, 0, 0.4);
-  border: 2px solid #FFD700;
+  border: 1px solid #fff;
   margin-bottom: 18px;
   text-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
 }
@@ -81,8 +80,8 @@ body {
 }
 
 button {
-  background: #000;
-  color: #FFD700;
+  background: white;
+  color: #19577c;
   font-weight: bold;
   border: none;
   border-radius: 50px;
@@ -98,10 +97,12 @@ button {
 }
 
 button:hover {
-  background: #FFD700;
-  color: #000;
+  background: #19577c;
+  color: #fff;
+  /* background: #FFD700;
+  color: #000; */
   transform: translateY(-3px) scale(1.04);
-  box-shadow: 0 0 25px #FFD700, 0 0 45px #FFD700;
+  box-shadow: 0 0 10px #fff, 0 0 20px #fff;
 }
 
 button img {
@@ -109,19 +110,19 @@ button img {
   height: 24px;
 }
 
-/* Make Shuffle button stand out */
 button.primary {
-  background: #FFD700;
-  color: #000;
+  background: #19577c;
+  color: white;
   font-size: 1.3rem;
   padding: 18px 28px;
-  box-shadow: 0 0 25px #FFD700, 0 0 50px #FFD700;
-  border: 2px solid #FFD700;
+  border: 2px solid white;
 }
 
 button.primary:hover {
-  background: #000;
+  background: #19577c;
   color: #FFD700;
+  box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+  /* border: 2px solid #FFD700; */
 }
 
 button img {
@@ -196,7 +197,7 @@ button img.hover-icon {
 
 .spinner {
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #FDBB30; /* MTN Yellow */
+  border-top: 4px solid #FDBB30;
   border-radius: 50%;
   width: 30px;
   height: 30px;
