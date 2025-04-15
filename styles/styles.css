@@ -118,7 +118,7 @@ button.primary {
   color: white;
   font-size: 1.3rem;
   padding: 18px 28px;
-  border: 2px solid white;
+  border: 1px solid white;
 }
 
 button.primary:hover {
