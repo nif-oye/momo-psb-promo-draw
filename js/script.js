@@ -19,7 +19,7 @@ function loadPeopleFromCSV() {
             people = [];
 
             lines.forEach(line => {
-                const [name, phone, refCountStr] = line.split(",").map(v => v.trim());
+                const [phone, name, refCountStr] = line.split(",").map(v => v.trim());
                 if (name && phone) {
                     const refCount = parseInt(refCountStr || "0", 10);
                     for (let i = 0; i <= refCount; i++) {

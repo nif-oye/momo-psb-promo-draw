@@ -11,7 +11,7 @@
 body {
   font-family: 'MTNBrighterSansRegular', Arial, sans-serif;
   margin: 0;
-  background: url('../images/Momo-Back.png') no-repeat center/cover;
+  background: url('../images/bg.png') no-repeat center/cover;
   color: #FFD700;
   display: flex;
   justify-content: center;
