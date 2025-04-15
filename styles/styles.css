@@ -11,7 +11,7 @@
 body {
   font-family: 'MTNBrighterSansRegular', Arial, sans-serif;
   margin: 0;
-  background: url('../images/MoMo-BG22.png') no-repeat center/cover;
+  background: url('../images/Momo-Back.png') no-repeat center/cover;
   color: #FFD700;
   display: flex;
   justify-content: center;
@@ -24,11 +24,14 @@ body {
   text-align: center;
   border-radius: 24px;
   padding: 40px 30px;
-  background-color: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(14px);
-  max-width: 520px;
+  max-width: 600px;
   width: 90%;
+  background: rgba(25, 87, 124, .85);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.7px);
+  -webkit-backdrop-filter: blur(7.7px);
+  border: 1px solid rgba(25, 87, 124, 1);
 }
 
 .logo {
@@ -44,7 +47,7 @@ body {
 
 .subtext {
   font-size: 1rem;
-  color: #FFD700cc;
+  color: #FFD700;
   margin-bottom: 30px;
 }
 
@@ -58,11 +61,11 @@ body {
   color: #FFD700;
   padding: 25px 20px;
   background: rgba(255, 215, 0, 0.08);
-  border-radius: 20px;
-  box-shadow: 0 0 18px rgba(255, 215, 0, 0.4);
+  border-radius: 10px;
+  /* box-shadow: 0 0 18px rgba(255, 215, 0, 0.4); */
   border: 1px solid #fff;
   margin-bottom: 18px;
-  text-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+  /* text-shadow: 0 0 12px rgba(255, 215, 0, 0.8); */
 }
 
 #nameDisplay {
@@ -142,7 +145,7 @@ button img.hover-icon {
   opacity: 0;
 }
 
-#downloadResultsBtn{
+#downloadResultsBtn {
   margin-top: 50px;
   font-size: 13px;
 }
@@ -152,10 +155,12 @@ button img.hover-icon {
   display: none;
   position: fixed;
   z-index: 999;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.85);
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
 .modal-content {
@@ -176,9 +181,10 @@ button img.hover-icon {
   text-align: center;
   border-bottom: 2px solid #FFD700;
   padding-bottom: 10px;
-} 
-  
-.close, .no-winners-close{
+}
+
+.close,
+.no-winners-close {
   color: #FFD700;
   float: right;
   font-size: 28px;
@@ -206,12 +212,17 @@ button img.hover-icon {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .footer {
   margin-top: 40px;
   font-size: 0.9rem;
-  color: #FFD700cc;
+  color: #FFD700;
 }
