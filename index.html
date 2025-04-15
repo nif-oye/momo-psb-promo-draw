@@ -3,24 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Randomizer 000 - 500</title>
+    <title>MoMo PSB Airtime/Data Draw</title>
     <link rel="stylesheet" href="./styles/styles.css" />
     <link rel="icon" type="image/png" href="./images/mtn-logo-black.png" />
   </head>
   <body>
     <div class="container">
-      <img src="./images/mtn-logo-white.png" alt="MTN Logo" class="logo" />
-      <h1 id="tag">Randomizer Draw</h1>
-      <div class="slot-machine">
-        <div class="wheel" id="wheel1">0</div>
-        <div class="wheel" id="wheel2">0</div>
-        <div class="wheel" id="wheel3">0</div>
+      <img src="./images/MoMo_Logo.png" alt="MoMo PSB Logo" class="logo" />
+
+      <h1 id="tag">Airtime & Data For Life</h1>
+      <p class="subtext">Random Draw Powered by MoMo PSB • MTN Nigeria</p>
+
+      <div class="display">
+        <div id="numberDisplay">080****1234</div>
+        <div id="nameDisplay">Winner</div>
       </div>
-      <button id="drawButton">
-        Shuffle!
-        <img src="./images/shuffle.png" alt="Shuffle icon" class="shuffle" />
-      </button>
+
+      <div class="buttons">
+        <button id="drawButton" class="primary">
+          <img
+            src="./images/shuffle-black.png"
+            alt="Shuffle Icon"
+            class="default-icon"
+          />
+          <img
+            src="./images/shuffle.png"
+            alt="Shuffle Hover Icon"
+            class="hover-icon"
+          />
+          Shuffle Now!
+        </button>
+
+        <button id="resultsButton">
+          <img
+            src="./images/winner.png"
+            alt="Results Icon"
+            class="default-icon"
+          />
+          <img
+            src="./images/winner-hover.png"
+            alt="Results Hover Icon"
+            class="hover-icon"
+          />
+          Show Results
+        </button>
+      </div>
+
+      <!-- the modal -->
+      <div id="resultsModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Draw Results</h2>
+          <div id="resultsList">
+            <!-- results will be dynamically inserted here -->
+          </div>
+          <button id="downloadResultsBtn" class="download-btn">
+            📄 Download Winners List
+          </button>
+        </div>
+      </div>
+
+      <!-- No Winners Modal -->
+      <div id="noWinnersModal" class="modal">
+        <div class="modal-content">
+          <span class="close no-winners-close">&times;</span>
+          <h2>No Winners Yet</h2>
+          <p>The draw hasn't started, or no winners have been selected yet.</p>
+        </div>
+      </div>
+
+      <footer class="footer">
+        Making Lives Brighter, One Winner At A Time ✨
+      </footer>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
     <script src="./js/script.js"></script>
   </body>
