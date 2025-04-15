@@ -156,7 +156,7 @@ document.getElementById("downloadResultsBtn").addEventListener("click", () => {
         return;
     }
 
-    let content = `MO MO PSB Airtime/Data Draw - Winners List\n=========================================\n\n`;
+    let content = `MoMo PSB Airtime/Data Draw - Winners List\n=========================================\n\n`;
 
     winners.forEach(winner => {
         content += `Round ${winner.round}: ${winner.name} (${maskPhoneNumber(winner.phone)})\n`;
