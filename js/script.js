@@ -70,6 +70,15 @@ function triggerConfetti() {
     }, 250);
 }
 
+function updateResultsList() {
+    resultsList.innerHTML = ""; // clear before updating
+    winners.forEach((winner, index) => {
+        const listItem = document.createElement("div");
+        listItem.textContent = `Winner #${winner.round}: ${maskPhoneNumber(winner.phone)} - ${winner.name}`;
+        resultsList.appendChild(listItem);
+    });
+}
+
 function shuffleNumber() {
     if (people.length === 0) {
         showNoWinnersModal();
@@ -85,34 +94,31 @@ function shuffleNumber() {
     const interval = setInterval(() => {
         const random = people[Math.floor(Math.random() * people.length)];
         updateNumberDisplay(random.phone);
+        // nameDisplay.textContent = "Shuffling..."; // optional during shuffle
         count++;
 
         if (count > 200) {
             clearInterval(interval);
 
             const shuffled = shuffleArray(people);
-            const winner = shuffled[0];
+            const winner = shuffled[Math.floor(Math.random() * shuffled.length)];
 
             updateNumberDisplay(winner.phone);
+            nameDisplay.textContent = winner.name;
 
-            nameDisplay.innerHTML = winner.name;
-            nameDisplay.style.transform = "scale(1.1)";
-
-            triggerConfetti();
-
-            roundCount++;
+            roundCount++;  // increment round
 
             winners.push({
-                round: roundCount,
-                name: winner.name,
-                phone: winner.phone
+                ...winner,
+                round: roundCount // add round info here
             });
 
-            people = people.filter(p => p.name !== winner.name);
+            updateResultsList();
+            triggerConfetti();
         }
-    }, 50);
-}
 
+    }, 20);
+}
 
 function showNoWinnersModal() {
     document.getElementById("noWinnersModal").style.display = "block";
@@ -139,7 +145,7 @@ resultsButton.addEventListener("click", () => {
     winners.forEach(winner => {
         const resultItem = document.createElement("div");
         resultItem.innerHTML = `
-      <strong>Round ${winner.round}:</strong> 
+      <strong>Winner #${winner.round}:</strong> 
       ${winner.name} 
       (${maskPhoneNumber(winner.phone)})
     `;
@@ -159,7 +165,7 @@ document.getElementById("downloadResultsBtn").addEventListener("click", () => {
     let content = `MoMo PSB Airtime/Data Draw - Winners List\n=========================================\n\n`;
 
     winners.forEach(winner => {
-        content += `Round ${winner.round}: ${winner.name} (${maskPhoneNumber(winner.phone)})\n`;
+        content += `Winner #${winner.round}: ${winner.name} (${winner.phone})\n`;
     });
 
     const blob = new Blob([content], { type: "text/plain" });

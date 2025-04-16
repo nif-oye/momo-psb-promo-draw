@@ -9,43 +9,25 @@
   </head>
   <body>
     <div class="container">
-      <img src="./images/momo-logo-yellow.png" alt="MoMo PSB Logo" class="logo" />
+      <img src="./images/MoMo_Logo.png" alt="MoMo PSB Logo" class="logo" />
 
       <h2>MoMo Refer & Win Promo</h2>
       <h1 id="tag">Win Airtime/Data For Life</h1>
-      <p class="subtext">Electronic Draw Powered by MoMo PSB • MTN Nigeria</p>
+      <p class="subtext">Electronic Draw Powered by MoMo PSB</p>
 
       <div class="display">
         <div id="numberDisplay">080****1234</div>
         <div id="nameDisplay">Winner Name</div>
       </div>
 
-      <div class="buttons">
-        <button id="drawButton" class="primary">
-          <img
-            src="./images/shuffle-white.png"
-            alt="Shuffle Icon"
-            class="default-icon"
-          />
-          <img
-            src="./images/shuffle.png"
-            alt="Shuffle Hover Icon"
-            class="hover-icon"
-          />
+      <div class="button-group">
+        <button id="drawButton" class="btn primary">
+          <img src="./images/shuffle-white.png" alt="Shuffle" class="icon" />
           Shuffle!
         </button>
 
-        <button id="resultsButton">
-          <img
-            src="./images/podium-blue.png"
-            alt="Results Icon"
-            class="default-icon"
-          />
-          <img
-            src="./images/podium-white.png"
-            alt="Results Hover Icon"
-            class="hover-icon"
-          />
+        <button id="resultsButton" class="btn secondary">
+          <img src="./images/podium-blue.png" alt="Results" class="icon" />
           Show Results
         </button>
       </div>
@@ -54,13 +36,15 @@
       <div id="resultsModal" class="modal">
         <div class="modal-content">
           <span class="close">&times;</span>
-          <h2>Draw Results</h2>
+          <h2>Consolatory Winners 🎉</h2>
           <div id="resultsList">
             <!-- results will be dynamically inserted here -->
           </div>
-          <button id="downloadResultsBtn" class="download-btn">
-            📄 Download Winners List
-          </button>
+          <div class="download-container">
+            <button id="downloadResultsBtn" class="btn ghost">
+              📄 Download Winners List
+            </button>
+          </div>
         </div>
       </div>
 
@@ -74,7 +58,7 @@
       </div>
 
       <footer class="footer">
-        Making Lives Brighter, One Winner At A Time ✨
+        <!-- Making Lives Brighter, One Winner At A Time ✨ -->
       </footer>
     </div>
 

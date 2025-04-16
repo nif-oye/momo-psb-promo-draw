@@ -11,8 +11,8 @@
 body {
   font-family: 'MTNBrighterSansRegular', Arial, sans-serif;
   margin: 0;
-  background: url('../images/bg.png') no-repeat center/cover;
-  color: #FFD700;
+  background: url('../images/New_BG.PNG') no-repeat center/cover;
+  color: #19577c;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,14 +22,19 @@ body {
 
 .container {
   text-align: center;
-  border-radius: 24px;
   padding: 40px 30px;
   backdrop-filter: blur(14px);
   max-width: 600px;
   width: 90%;
-  background: rgba(25, 87, 124, .85);
+
+  /* From https://css.glass */
+  background: rgba(255, 215, 0, .4);
+  border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(25, 87, 124, 1);
+  backdrop-filter: blur(9.8px);
+  -webkit-backdrop-filter: blur(9.8px);
+  border: 15px solid rgba(218, 165, 32, 1);
+  /* border: 15px solid rgba(255, 240, 60, 1); */
 }
 
 .logo {
@@ -46,7 +51,7 @@ body {
 
 .subtext {
   font-size: 1rem;
-  color: #FFD700;
+  color: #19577c;
   margin-bottom: 30px;
 }
 
@@ -57,89 +62,109 @@ body {
 #numberDisplay {
   font-size: 4.5rem;
   font-weight: bold;
-  color: #FFD700;
+  color: #19577c;
   padding: 25px 20px;
   background: rgba(255, 215, 0, 0.08);
   border-radius: 10px;
-  border: 1px solid #fff;
+  border: 3px solid #19577c;
   margin-bottom: 18px;
 }
 
 #nameDisplay {
   font-size: 2rem;
-  color: #fff;
+  color: #19577c;
   text-shadow: 0 0 12px rgba(255, 215, 0, 0.95);
 }
 
-.buttons {
+/* Group for shuffle and results buttons */
+.button-group {
   display: flex;
-  gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 30px;
+  gap: 20px;
+  margin-top: 40px;
 }
 
-button {
-  background: white;
-  color: #19577c;
-  font-weight: bold;
+/* Download button in separate section */
+.download-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+/* General button base styles */
+.btn {
+  position: relative;
+  padding: 14px 26px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: none;
-  border-radius: 50px;
-  padding: 16px 24px;
-  font-size: 1.1rem;
+  border-radius: 16px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 10px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-  transition: all 0.3s ease;
-  font-family: 'MTNBrighterSansRegular', Arial, sans-serif;
+  gap: 12px;
+  transition: all 0.3s ease-in-out;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
-  background: #19577c;
-  color: #fff;
-  transform: translateY(-3px) scale(1.04);
-  box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+/* Icon style */
+.btn .icon {
+  width: 22px;
+  height: 22px;
 }
 
-button img {
-  width: 24px;
-  height: 24px;
-  transition: opacity 0.3s ease;
+/* Primary: Bold blue gradient */
+.btn.primary {
+  background: linear-gradient(135deg, #0f1c2f, #19577c);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-button.primary {
+.btn.primary:hover {
+  background: linear-gradient(135deg, #19577c, #0f1c2f);
+  box-shadow: 0 0 12px #00d0ff88;
+  transform: translateY(-3px) scale(1.03);
+}
+
+/* Secondary: Silvery modern */
+.btn.secondary {
+  background: linear-gradient(145deg, #f0f0f3, #dcdcdc);
+  color: #19577c;
+  border: 1px solid #ccc;
+}
+
+.btn.secondary:hover {
+  background: white;
+  box-shadow: 0 0 12px #aaa;
+  transform: translateY(-3px) scale(1.03);
+}
+
+.btn.primary,
+.btn.secondary {
+  font-size: 1.2rem;
+  padding: 18px 32px;
+  border-radius: 15px;
+}
+
+/* Ghost: For download button */
+.btn.ghost {
+  background: transparent;
+  border: 2px dashed #19577c;
+  color: #19577c;
+  font-size: 0.95rem;
+  padding: 12px 22px;
+}
+
+.btn.ghost:hover {
   background: #19577c;
   color: white;
-  font-size: 1.3rem;
-  padding: 18px 28px;
-  border: 1px solid white;
+  box-shadow: 0 0 12px #19577c88;
+  transform: translateY(-3px) scale(1.03);
 }
 
-button.primary:hover {
-  background: #19577c;
-  color: #FFD700;
-  box-shadow: 0 0 10px #fff, 0 0 20px #fff;
-}
-
-button:hover img.default-icon {
-  opacity: 0;
-}
-
-button:hover img.hover-icon {
-  opacity: 1;
-}
-
-button img.hover-icon {
-  position: absolute;
-  opacity: 0;
-}
-
-#downloadResultsBtn {
-  margin-top: 50px;
-  font-size: 13px;
-}
 
 /* Modal styling */
 .modal {
@@ -161,22 +186,22 @@ button img.hover-icon {
   border-radius: 20px;
   width: 80%;
   max-width: 600px;
-  color: #FFD700;
+  color: #FFCC08;
   text-align: left;
-  box-shadow: 0 0 30px #FFD70066;
+  box-shadow: 0 0 30px #FFCC0866;
 }
 
 .modal-content h2 {
   margin-top: 0;
   font-size: 2rem;
   text-align: center;
-  border-bottom: 2px solid #FFD700;
+  border-bottom: 2px solid #FFCC08;
   padding-bottom: 10px;
 }
 
 .close,
 .no-winners-close {
-  color: #FFD700;
+  color: #FFCC08;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -194,7 +219,7 @@ button img.hover-icon {
 
 .spinner {
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #FDBB30;
+  border-top: 4px solid #19577c;
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -206,6 +231,7 @@ button img.hover-icon {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -214,7 +240,7 @@ button img.hover-icon {
 .footer {
   margin-top: 40px;
   font-size: 0.9rem;
-  color: #FFD700;
+  color: #19577c;
 }
 
 /* MOBILE FRIENDLY RESPONSIVE DESIGN */
