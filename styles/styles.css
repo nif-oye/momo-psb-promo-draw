@@ -20,22 +20,64 @@ body {
   overflow-x: hidden;
 }
 
+body {
+  transition: background 2s ease;
+}
+
+body.grand-prize-mode{
+  background: url('/images/Dark-Momo-bg.png') no-repeat center center fixed;
+  background-size: cover;
+  transition: background 2s ease;
+}
+
+@keyframes pulseBackground {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Ensure the container’s background transition is enabled */
 .container {
   text-align: center;
   padding: 40px 30px;
   backdrop-filter: blur(14px);
-  max-width: 600px;
+  max-width: 700px;
   width: 90%;
-
-  /* From https://css.glass */
-  background: rgba(255, 215, 0, .4);
+  background: rgba(255, 215, 0, 0.4);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(9.8px);
   -webkit-backdrop-filter: blur(9.8px);
-  border: 15px solid rgba(218, 165, 32, 1);
-  /* border: 15px solid rgba(255, 240, 60, 1); */
+  /* border: 15px solid rgba(218, 165, 32, 1); */
+  transition: background 2s ease;
 }
+
+/* Grand Prize mode container: change background opacity */
+body.grand-prize-mode .container {
+  background: rgba(255, 215, 0, 0.1);
+}
+
+/* Change h1 and h2 colors */
+body.grand-prize-mode h1,
+body.grand-prize-mode h2 {
+  color: #FFCC08;
+  transition: color 2s ease;
+}
+
+/* Change the subtext color */
+body.grand-prize-mode .subtext {
+  color: #FFCC08;
+  transition: color 2s ease;
+}
+
+/* Change the #numberDisplay and #nameDisplay text colors */
+body.grand-prize-mode #numberDisplay,
+body.grand-prize-mode #nameDisplay {
+  color: #FFCC08;
+  transition: color 2s ease;
+  border-color: #FFCC08;
+}
+
 
 .logo {
   width: 200px;
@@ -53,6 +95,7 @@ body {
   font-size: 1rem;
   color: #19577c;
   margin-bottom: 30px;
+  transition: color 2s ease;
 }
 
 .display {
@@ -68,6 +111,7 @@ body {
   border-radius: 10px;
   border: 3px solid #19577c;
   margin-bottom: 18px;
+  width: 90%;
 }
 
 #nameDisplay {
@@ -149,11 +193,10 @@ body {
   border-radius: 15px;
 }
 
-/* Ghost: For download button */
 .btn.ghost {
   background: transparent;
   border: 2px dashed #19577c;
-  color: #19577c;
+  color: white;
   font-size: 0.95rem;
   padding: 12px 22px;
 }
@@ -165,8 +208,11 @@ body {
   transform: translateY(-3px) scale(1.03);
 }
 
+.logo.grand {
+  content: url("images/grand-logo.png");
+}
 
-/* Modal styling */
+/* modal styling */
 .modal {
   display: none;
   position: fixed;

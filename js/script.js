@@ -9,6 +9,7 @@ const resultsList = document.getElementById("resultsList");
 let people = [];
 let roundCount = 0;
 let winners = [];
+const totalRounds = 11; // 10 normal rounds + 1 grand prize round
 
 // Load CSV with RefCount support
 function loadPeopleFromCSV() {
@@ -51,8 +52,9 @@ function updateNumberDisplay(number) {
     numberDisplay.textContent = maskPhoneNumber(number);
 }
 
-function triggerConfetti() {
-    const duration = 8000;
+// Normal confetti effect (for rounds 1-10)
+function triggerConfettiNormal() {
+    const duration = 4000;
     const end = Date.now() + duration;
 
     const interval = setInterval(() => {
@@ -60,7 +62,7 @@ function triggerConfetti() {
         if (timeLeft <= 0) return clearInterval(interval);
 
         confetti({
-            particleCount: 200 * (timeLeft / duration),
+            particleCount: 100 * (timeLeft / duration),
             startVelocity: 30,
             spread: 360,
             ticks: 60,
@@ -70,34 +72,69 @@ function triggerConfetti() {
     }, 250);
 }
 
+// Special confetti effect for the grand prize round
+function triggerConfettiGrand() {
+    const duration = 20000;
+    const end = Date.now() + duration;
+
+    const interval = setInterval(() => {
+        const timeLeft = end - Date.now();
+        if (timeLeft <= 0) return clearInterval(interval);
+
+        confetti({
+            particleCount: 350 * (timeLeft / duration),
+            startVelocity: 90,
+            spread: 1000,
+            ticks:120,
+            colors: ['#FFD700', '#FFCC08', '#ffffff'], // gold and bright colors
+            origin: { x: Math.random(), y: Math.random() - 0.2 },
+            zIndex: 0,
+        });
+    }, 200);
+}
+
 function updateResultsList() {
     resultsList.innerHTML = ""; // clear before updating
     winners.forEach((winner, index) => {
         const listItem = document.createElement("div");
-        listItem.textContent = `Winner #${winner.round}: ${maskPhoneNumber(winner.phone)} - ${winner.name}`;
+        if (winner.isGrandPrize) {
+            listItem.innerHTML = `<img src="./images/crown.png" alt="Crown" class="crown-icon" style="width:20px;vertical-align:middle;margin-right:8px;"> Grand Prize Winner → ${winner.name} (${maskPhoneNumber(winner.phone)})`;
+        } else {
+            listItem.textContent = `Winner #${winner.round} → ${winner.name} (${maskPhoneNumber(winner.phone)}) `;
+        }
         resultsList.appendChild(listItem);
     });
 }
 
+function disableDrawButton() {
+    drawButton.disabled = true;
+    drawButton.textContent = "No More Draws";
+}
+
+// Main function to run a draw round
 function shuffleNumber() {
     if (people.length === 0) {
         showNoWinnersModal();
         return;
     }
+    if (roundCount >= totalRounds) {
+        disableDrawButton();
+        return;
+    }
+
+    // Disable button immediately to prevent double-click
+    drawButton.disabled = true;
 
     let count = 0;
-
-    // Show spinner
     nameDisplay.innerHTML = `<div class="spinner"></div>`;
     nameDisplay.style.opacity = 1;
 
     const interval = setInterval(() => {
         const random = people[Math.floor(Math.random() * people.length)];
         updateNumberDisplay(random.phone);
-        // nameDisplay.textContent = "Shuffling..."; // optional during shuffle
         count++;
 
-        if (count > 200) {
+        if (count > 10) { // ~15 seconds of shuffling
             clearInterval(interval);
 
             const shuffled = shuffleArray(people);
@@ -106,19 +143,41 @@ function shuffleNumber() {
             updateNumberDisplay(winner.phone);
             nameDisplay.textContent = winner.name;
 
-            roundCount++;  // increment round
+            roundCount++;
 
-            winners.push({
-                ...winner,
-                round: roundCount // add round info here
-            });
+            if (roundCount === totalRounds) {
+                drawButton.textContent = "Grand Prize Draw!";
+                winners.push({ ...winner, round: roundCount, isGrandPrize: true });
+                triggerConfettiGrand();
+
+                // Change logo image to grand prize logo (update the path as needed)
+            } else {
+                winners.push({ ...winner, round: roundCount, isGrandPrize: false });
+                triggerConfettiNormal();
+                if (roundCount === totalRounds - 1) {
+                    drawButton.textContent = "Next: Grand Prize Round";
+                    
+                    document.querySelector('.logo').src = "images/grand-logo.png";
+                    // Add the grand prize mode to the body to trigger all the CSS changes
+                    document.body.classList.add("grand-prize-mode");
+                }
+            }
 
             updateResultsList();
-            triggerConfetti();
-        }
 
+            // Remove the winner from the pool to prevent repeats
+            people = people.filter(p => p.name !== winner.name);
+
+            if (roundCount >= totalRounds) {
+                disableDrawButton();
+            } else {
+                // Re-enable button after shuffling stops if more rounds remain
+                drawButton.disabled = false;
+            }
+        }
     }, 20);
 }
+
 
 function showNoWinnersModal() {
     document.getElementById("noWinnersModal").style.display = "block";
@@ -127,7 +186,7 @@ document.querySelector(".no-winners-close").addEventListener("click", () => {
     document.getElementById("noWinnersModal").style.display = "none";
 });
 
-
+// Event listeners
 drawButton.addEventListener("click", shuffleNumber);
 
 loadPeopleFromCSV();
@@ -138,21 +197,6 @@ resultsButton.addEventListener("click", () => {
         showNoWinnersModal();
         return;
     }
-
-    // Clear old results
-    resultsList.innerHTML = "";
-
-    winners.forEach(winner => {
-        const resultItem = document.createElement("div");
-        resultItem.innerHTML = `
-      <strong>Winner #${winner.round}:</strong> 
-      ${winner.name} 
-      (${maskPhoneNumber(winner.phone)})
-    `;
-        resultsList.appendChild(resultItem);
-    });
-
-    // Show modal
     resultsModal.style.display = "block";
 });
 
@@ -163,9 +207,12 @@ document.getElementById("downloadResultsBtn").addEventListener("click", () => {
     }
 
     let content = `MoMo PSB Airtime/Data Draw - Winners List\n=========================================\n\n`;
-
     winners.forEach(winner => {
-        content += `Winner #${winner.round}: ${winner.name} (${winner.phone})\n`;
+        if (winner.isGrandPrize) {
+            content += `Grand Prize Winner: ${winner.name} (${winner.phone})\n`;
+        } else {
+            content += `Winner #${winner.round}: ${winner.name} (${winner.phone})\n`;
+        }
     });
 
     const blob = new Blob([content], { type: "text/plain" });
