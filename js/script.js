@@ -137,7 +137,7 @@ function shuffleNumber() {
         updateNumberDisplay(random.phone);
         count++;
 
-        if (count > 10) { // roughly 15 seconds
+        if (count > 750) { // roughly 15 seconds
             clearInterval(interval);
 
             const shuffled = shuffleArray(people);
