@@ -5,41 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MoMo PSB Airtime/Data Draw</title>
     <link rel="stylesheet" href="./styles/styles.css" />
-    <link rel="icon" type="image/png" href="./images/mtn-logo-black.png" />
+    <link rel="icon" type="image/png" href="./images/momo-icon.png" />
   </head>
   <body>
     <div class="container">
-      <img src="./images/MoMo_Logo.png" alt="MoMo PSB Logo" class="logo" />
-
+      <!-- Logo and Header -->
+      <img src="./images/momo-logo-blue.png" alt="MoMo PSB Logo" class="logo" />
       <h2>MoMo Refer & Win Promo</h2>
       <h1 id="tag">Win Airtime/Data For Life</h1>
       <p class="subtext">Electronic Draw Powered by MoMo PSB</p>
 
+      <!-- Winner Display -->
       <div class="display">
         <div id="numberDisplay">080****1234</div>
         <div id="nameDisplay">Winner Name</div>
       </div>
 
+      <!-- Action Buttons -->
       <div class="button-group">
         <button id="drawButton" class="btn primary">
           <img src="./images/shuffle-white.png" alt="Shuffle" class="icon" />
           Shuffle!
         </button>
-
         <button id="resultsButton" class="btn secondary">
           <img src="./images/podium-blue.png" alt="Results" class="icon" />
           Show Results
         </button>
       </div>
 
-      <!-- result modal -->
+      <!-- Results Modal -->
       <div id="resultsModal" class="modal">
         <div class="modal-content">
           <span class="close">&times;</span>
           <h2>Winners 🎉</h2>
-          <div id="resultsList">
-            <!-- results will be dynamically inserted here -->
-          </div>
+          <div id="resultsList"></div>
           <div class="download-container">
             <button id="downloadResultsBtn" class="btn ghost">
               📄 Download Winners List
@@ -48,7 +47,7 @@
         </div>
       </div>
 
-      <!-- no Winners Modal -->
+      <!-- No Winners Modal -->
       <div id="noWinnersModal" class="modal">
         <div class="modal-content">
           <span class="close no-winners-close">&times;</span>
@@ -57,22 +56,27 @@
         </div>
       </div>
 
-      <!-- grand modal -->
-      <!-- Grand Prize Confirmation Modal -->
+      <!-- Grand Prize Modal -->
       <div id="grandPrizeModal" class="modal">
         <div class="modal-content">
           <span class="close grand-close">&times;</span>
-          <h2><img src="images/crown.png" alt="Crown" class="crown-icon"> Grand Prize Round <img src="images/crown.png" alt="Crown" class="crown-icon"></h2>
+          <h2>
+            <img src="images/crown.png" alt="Crown" class="crown-icon" />
+            Grand Prize Round
+            <img src="images/crown.png" alt="Crown" class="crown-icon" />
+          </h2>
           <p>You're about to select the Grand Prize Winner!</p>
           <button id="grandPrizeButton" class="btn primary">
-            Shuffle for Winner
+            Shuffle for Winner!
           </button>
         </div>
       </div>
 
+      <!-- Footer -->
       <footer class="footer"></footer>
     </div>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
     <script src="./js/script.js"></script>
   </body>

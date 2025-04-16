@@ -1,3 +1,6 @@
+/* =========================
+   FONT IMPORTS
+========================= */
 @font-face {
   font-family: 'MTNBrighterSansBold';
   src: url('../font/MTNBrighterSans-Bold.ttf') format('truetype');
@@ -8,47 +11,33 @@
   src: url('../font/MTNBrighterSans-Regular.ttf') format('truetype');
 }
 
+/* =========================
+   GLOBAL STYLES
+========================= */
 body {
   font-family: 'MTNBrighterSansRegular', Arial, sans-serif;
   margin: 0;
-  background: url('../images/New_BG.PNG') no-repeat center/cover;
+  background: url('../images/body-background.png') no-repeat center/cover;
   color: #19577c;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100dvh;
   overflow-x: hidden;
-}
-
-body {
   transition: background 2s ease;
 }
 
 body.grand-prize-mode {
   background: url('/images/Dark-Momo-bg.png') no-repeat center center fixed;
   background-size: cover;
-  transition: background 2s ease;
 }
 
-@keyframes pulseBackground {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Ensure the container’s background transition is enabled */
+/* =========================
+   LAYOUT & CONTAINERS
+========================= */
 .container {
   text-align: center;
   padding: 40px 30px;
-  backdrop-filter: blur(14px);
   max-width: 700px;
   width: 90%;
   background: rgba(255, 215, 0, 0.4);
@@ -56,42 +45,19 @@ body.grand-prize-mode {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(9.8px);
   -webkit-backdrop-filter: blur(9.8px);
-  /* border: 15px solid rgba(218, 165, 32, 1); */
   transition: background 2s ease;
 }
 
-/* Grand Prize mode container: change background opacity */
 body.grand-prize-mode .container {
   background: rgba(255, 215, 0, 0.1);
 }
 
-/* Change h1 and h2 colors */
-body.grand-prize-mode h1,
-body.grand-prize-mode h2 {
-  color: #FFCC08;
+/* =========================
+   TYPOGRAPHY
+========================= */
+h1, h2 {
   transition: color 2s ease;
 }
-
-/* Change the subtext color */
-body.grand-prize-mode .subtext {
-  color: #FFCC08;
-  transition: color 2s ease;
-}
-
-/* Change the #numberDisplay and #nameDisplay text colors */
-body.grand-prize-mode #numberDisplay,
-body.grand-prize-mode #nameDisplay {
-  color: #FFCC08;
-  transition: color 2s ease;
-  border-color: #FFCC08;
-}
-
-
-.logo {
-  width: 200px;
-  max-width: 90%;
-}
-
 
 #tag {
   font-family: 'MTNBrighterSansBold';
@@ -101,11 +67,22 @@ body.grand-prize-mode #nameDisplay {
 
 .subtext {
   font-size: 1rem;
-  color: #19577c;
   margin-bottom: 30px;
   transition: color 2s ease;
 }
 
+body.grand-prize-mode h1,
+body.grand-prize-mode h2,
+body.grand-prize-mode .subtext,
+body.grand-prize-mode #numberDisplay,
+body.grand-prize-mode #nameDisplay {
+  color: #FFCC08;
+  border-color: #FFCC08;
+}
+
+/* =========================
+   DISPLAY AREA
+========================= */
 .display {
   margin-bottom: 30px;
 }
@@ -113,22 +90,36 @@ body.grand-prize-mode #nameDisplay {
 #numberDisplay {
   font-size: 4.5rem;
   font-weight: bold;
-  color: #19577c;
   padding: 25px 20px;
   background: rgba(255, 215, 0, 0.08);
   border-radius: 10px;
   border: 3px solid #19577c;
   margin-bottom: 18px;
   width: 90%;
+  transition: color 2s ease, border-color 2s ease;
 }
 
 #nameDisplay {
   font-size: 2rem;
-  color: #19577c;
   text-shadow: 0 0 12px rgba(255, 215, 0, 0.95);
+  transition: color 2s ease;
 }
 
-/* Group for shuffle and results buttons */
+/* =========================
+   LOGO
+========================= */
+.logo {
+  width: 200px;
+  max-width: 90%;
+}
+
+.logo.grand {
+  content: url("images/momo-logo-yellow.png");
+}
+
+/* =========================
+   BUTTONS
+========================= */
 .button-group {
   display: flex;
   flex-wrap: wrap;
@@ -137,16 +128,17 @@ body.grand-prize-mode #nameDisplay {
   margin-top: 40px;
 }
 
-/* Download button in separate section */
 .download-container {
   display: flex;
   justify-content: center;
   margin-top: 50px;
 }
 
-/* General button base styles */
 .btn {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   padding: 14px 26px;
   font-size: 1rem;
   font-weight: 600;
@@ -154,21 +146,11 @@ body.grand-prize-mode #nameDisplay {
   border: none;
   border-radius: 16px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  transition: all 0.3s ease-in-out;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
 }
 
-/* Icon style */
-.btn .icon {
-  width: 22px;
-  height: 22px;
-}
-
-/* Primary: Bold blue gradient */
 .btn.primary {
   background: linear-gradient(135deg, #0f1c2f, #19577c);
   color: white;
@@ -181,7 +163,6 @@ body.grand-prize-mode #nameDisplay {
   transform: translateY(-3px) scale(1.03);
 }
 
-/* Secondary: Silvery modern */
 .btn.secondary {
   background: linear-gradient(145deg, #f0f0f3, #dcdcdc);
   color: #19577c;
@@ -192,13 +173,6 @@ body.grand-prize-mode #nameDisplay {
   background: white;
   box-shadow: 0 0 12px #aaa;
   transform: translateY(-3px) scale(1.03);
-}
-
-.btn.primary,
-.btn.secondary {
-  font-size: 1.2rem;
-  padding: 18px 32px;
-  border-radius: 15px;
 }
 
 .btn.ghost {
@@ -216,11 +190,14 @@ body.grand-prize-mode #nameDisplay {
   transform: translateY(-3px) scale(1.03);
 }
 
-.logo.grand {
-  content: url("images/grand-logo.png");
+.btn .icon {
+  width: 22px;
+  height: 22px;
 }
 
-/* modal styling */
+/* =========================
+   MODALS
+========================= */
 .modal {
   display: none;
   position: fixed;
@@ -231,13 +208,6 @@ body.grand-prize-mode #nameDisplay {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.85);
-}
-
-.crown-icon {
-  width: 32px;
-  height: 32px;
-  vertical-align: middle;
-  margin-left: 4px;
 }
 
 .modal-content {
@@ -255,7 +225,6 @@ body.grand-prize-mode #nameDisplay {
 .modal-content h2 {
   margin-top: 0;
   font-size: 2rem;
-  text-align: center;
   border-bottom: 2px solid #FFCC08;
   padding-bottom: 10px;
 }
@@ -269,15 +238,25 @@ body.grand-prize-mode #nameDisplay {
   cursor: pointer;
 }
 
+.close:hover {
+  color: #fff;
+}
+
 #resultsList {
   margin-top: 20px;
   line-height: 1.8;
 }
 
-.close:hover {
-  color: #fff;
+.crown-icon {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+  margin-left: 4px;
 }
 
+/* =========================
+   SPINNER
+========================= */
 .spinner {
   border: 4px solid #f3f3f3;
   border-top: 4px solid #19577c;
@@ -298,13 +277,18 @@ body.grand-prize-mode #nameDisplay {
   }
 }
 
+/* =========================
+   FOOTER
+========================= */
 .footer {
   margin-top: 40px;
   font-size: 0.9rem;
   color: #19577c;
 }
 
-/* MOBILE FRIENDLY RESPONSIVE DESIGN */
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
 @media (max-width: 480px) {
   body {
     padding: 20px;
