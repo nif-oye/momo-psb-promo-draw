@@ -24,16 +24,24 @@ body {
   transition: background 2s ease;
 }
 
-body.grand-prize-mode{
+body.grand-prize-mode {
   background: url('/images/Dark-Momo-bg.png') no-repeat center center fixed;
   background-size: cover;
   transition: background 2s ease;
 }
 
 @keyframes pulseBackground {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Ensure the container’s background transition is enabled */
@@ -223,6 +231,13 @@ body.grand-prize-mode #nameDisplay {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.85);
+}
+
+.crown-icon {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+  margin-left: 4px;
 }
 
 .modal-content {
