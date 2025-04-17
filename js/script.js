@@ -9,6 +9,10 @@ const resultsList = document.getElementById("resultsList");
 const grandPrizeModal = document.getElementById("grandPrizeModal");
 const grandPrizeButton = document.getElementById("grandPrizeButton");
 
+// Get audio elements
+const normalAudio = document.getElementById("normalAudio");
+const grandAudio  = document.getElementById("grandAudio");
+
 // State Variables
 let isGrandPrizeReady = false;
 let people = [];
@@ -183,14 +187,23 @@ function shuffleGrandPrize() {
   }, 300);
 }
 
-// Event Listeners
+// Draw Button click → plays normal audio
 drawButton.addEventListener("click", () => {
   if (isGrandPrizeReady) {
     grandPrizeModal.style.display = "block";
     drawButton.style.display = "none";
   } else {
+    normalAudio.currentTime = 0;
+    normalAudio.play().catch(console.error);
     shuffleNumber();
   }
+});
+
+// Grand Prize button click → plays grand audio
+grandPrizeButton.addEventListener("click", () => {
+  grandAudio.currentTime = 0;
+  grandAudio.play().catch(console.error);
+  shuffleGrandPrize();
 });
 
 document.querySelector(".grand-close").addEventListener("click", () => {
@@ -201,8 +214,6 @@ document.querySelector(".grand-close").addEventListener("click", () => {
 document.querySelector(".no-winners-close").addEventListener("click", () => {
   document.getElementById("noWinnersModal").style.display = "none";
 });
-
-grandPrizeButton.addEventListener("click", shuffleGrandPrize);
 
 resultsButton.addEventListener("click", () => {
   if (winners.length === 0) return showNoWinnersModal();
