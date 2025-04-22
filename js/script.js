@@ -1,5 +1,6 @@
 // DOM Elements
 const drawButton = document.getElementById("drawButton");
+const consolation = document.getElementById("consolation");
 const numberDisplay = document.getElementById("numberDisplay");
 const nameDisplay = document.getElementById("nameDisplay");
 const resultsButton = document.getElementById("resultsButton");
@@ -73,6 +74,10 @@ function disableDrawButton() {
   drawButton.textContent = "No More Draws";
 }
 
+function disableConsolation(){
+  consolation.disabled = true;
+}
+
 function showNoWinnersModal() {
   document.getElementById("noWinnersModal").style.display = "block";
 }
@@ -83,10 +88,11 @@ function triggerConfettiNormal() {
   const interval = setInterval(() => {
     if (Date.now() > end) return clearInterval(interval);
     confetti({
-      particleCount: 100,
+      particleCount: 300,
       startVelocity: 30,
-      spread: 360,
+      spread: 500,
       ticks: 60,
+      colors: ['#ffad08', '#19577c', '#ffffff'],
       origin: { x: Math.random(), y: Math.random() - 0.2 },
       zIndex: 0
     });
@@ -99,9 +105,9 @@ function triggerConfettiGrand() {
     if (Date.now() > end) return clearInterval(interval);
     confetti({
       particleCount: 350,
-      startVelocity: 90,
-      spread: 1000,
-      ticks: 120,
+      startVelocity: 40,
+      spread: 700,
+      ticks: 60,
       colors: ['#FFD700', '#FFCC08', '#ffffff'],
       origin: { x: Math.random(), y: Math.random() - 0.2 },
       zIndex: 0
@@ -121,6 +127,7 @@ function shuffleNumber() {
   }
 
   drawButton.disabled = true;
+  consolation.disabled = true;
   nameDisplay.innerHTML = `<div class="spinner"></div>`;
 
   let count = 0;
@@ -129,7 +136,7 @@ function shuffleNumber() {
     updateNumberDisplay(random.phone);
     count++;
 
-    if (count > 750) {
+    if (count > 10) {
       clearInterval(interval);
       const winner = shuffleArray(people)[Math.floor(Math.random() * people.length)];
 
@@ -145,9 +152,11 @@ function shuffleNumber() {
 
       if (roundCount < totalRounds - 1) {
         drawButton.disabled = false;
+        consolation.disabled = false;
       } else {
         isGrandPrizeReady = true;
         drawButton.disabled = false;
+        consolation.disabled = false;
         drawButton.innerHTML = 'Next: Grand Prize... <img src="images/crown.png" alt="Crown" class="crown-icon">';
       }
     }
@@ -182,6 +191,7 @@ function shuffleGrandPrize() {
         triggerConfettiGrand();
         updateResultsList();
         disableDrawButton();
+        disableConsolation();
       }
     }, 20);
   }, 300);
@@ -192,6 +202,7 @@ drawButton.addEventListener("click", () => {
   if (isGrandPrizeReady) {
     grandPrizeModal.style.display = "block";
     drawButton.style.display = "none";
+    consolation.style.display = "none";
   } else {
     normalAudio.currentTime = 0;
     normalAudio.play().catch(console.error);
@@ -209,6 +220,7 @@ grandPrizeButton.addEventListener("click", () => {
 document.querySelector(".grand-close").addEventListener("click", () => {
   grandPrizeModal.style.display = "none";
   drawButton.disabled = false;
+  consolation.disabled = false;
 });
 
 document.querySelector(".no-winners-close").addEventListener("click", () => {
