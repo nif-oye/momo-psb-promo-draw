@@ -136,7 +136,7 @@ function shuffleNumber() {
     updateNumberDisplay(random.phone);
     count++;
 
-    if (count > 10) {
+    if (count > 750) {
       clearInterval(interval);
       const winner = shuffleArray(people)[Math.floor(Math.random() * people.length)];
 
