@@ -57,14 +57,20 @@ function updateNumberDisplay(number) {
   numberDisplay.textContent = maskPhoneNumber(number);
 }
 
+function formatName(fullName) {
+  const parts = fullName.trim().split(" ");
+  if (parts.length === 1) return parts[0];
+  return `${parts[0]} ${parts[1][0]}.`;
+}
+
 function updateResultsList() {
   resultsList.innerHTML = "";
   winners.forEach((winner, index) => {
     const listItem = document.createElement("div");
     const typeLabel = winner.isGrandPrize ? "Grand Prize Winner" : `Winner #${winner.round}`;
     listItem.innerHTML = winner.isGrandPrize
-      ? `<img src="./images/crown.png" alt="Crown" style="width:20px;vertical-align:middle;margin-right:8px;"> ${typeLabel} → ${maskPhoneNumber(winner.phone)} - ${winner.name}`
-      : `${typeLabel} → ${maskPhoneNumber(winner.phone)} - ${winner.name}`;
+      ? `<img src="./images/crown.png" alt="Crown" style="width:20px;vertical-align:middle;margin-right:8px;"> ${typeLabel} → ${maskPhoneNumber(winner.phone)} - ${formatName(winner.name)}`
+      : `${typeLabel} → ${maskPhoneNumber(winner.phone)} - ${formatName(winner.name)}`;
     resultsList.appendChild(listItem);
   });
 }
@@ -141,7 +147,7 @@ function shuffleNumber() {
       const winner = shuffleArray(people)[Math.floor(Math.random() * people.length)];
 
       updateNumberDisplay(winner.phone);
-      nameDisplay.textContent = winner.name;
+      nameDisplay.textContent = formatName(winner.name);
       roundCount++;
 
       winners.push({ ...winner, round: roundCount, isGrandPrize: false });
@@ -182,7 +188,7 @@ function shuffleGrandPrize() {
         const winner = shuffleArray(people)[Math.floor(Math.random() * people.length)];
 
         updateNumberDisplay(winner.phone);
-        nameDisplay.textContent = winner.name;
+        nameDisplay.textContent = formatName(winner.name);
         roundCount++;
 
         winners.push({ ...winner, round: roundCount, isGrandPrize: true });
