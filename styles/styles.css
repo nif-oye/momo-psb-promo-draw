@@ -55,7 +55,8 @@ body.grand-prize-mode .container {
 /* =========================
    TYPOGRAPHY
 ========================= */
-h1, h2 {
+h1,
+h2 {
   transition: color 2s ease;
 }
 
@@ -193,6 +194,10 @@ body.grand-prize-mode #nameDisplay {
 .btn .icon {
   width: 22px;
   height: 22px;
+}
+
+#downloadResultsBtn {
+  display: none;
 }
 
 /* =========================

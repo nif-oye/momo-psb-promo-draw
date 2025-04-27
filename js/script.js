@@ -198,6 +198,7 @@ function shuffleGrandPrize() {
         updateResultsList();
         disableDrawButton();
         disableConsolation();
+        document.getElementById("downloadResultsBtn").style.display = "inline-block";
       }
     }, 20);
   }, 300);
