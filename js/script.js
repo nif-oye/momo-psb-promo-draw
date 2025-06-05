@@ -23,7 +23,7 @@ const totalRounds = 11;
 
 // Utility Functions
 function loadPeopleFromCSV() {
-  fetch("week_8_referrers.csv")
+  fetch("week-9.csv")
     .then(res => res.text())
     .then(data => {
       const lines = data.split("\n").slice(1);
@@ -224,11 +224,11 @@ grandPrizeButton.addEventListener("click", () => {
   shuffleGrandPrize();
 });
 
-document.querySelector(".grand-close").addEventListener("click", () => {
-  grandPrizeModal.style.display = "none";
-  drawButton.disabled = false;
-  consolation.disabled = false;
-});
+// document.querySelector(".grand-close").addEventListener("click", () => {
+//   grandPrizeModal.style.display = "none";
+//   drawButton.disabled = false;
+//   consolation.disabled = false;
+// });
 
 document.querySelector(".no-winners-close").addEventListener("click", () => {
   document.getElementById("noWinnersModal").style.display = "none";
