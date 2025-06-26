@@ -23,7 +23,7 @@ const totalRounds = 11;
 
 // Utility Functions
 function loadPeopleFromCSV() {
-  fetch("week-11.csv")
+  fetch("week-12.csv")
     .then(res => res.text())
     .then(data => {
       const lines = data.split("\n").slice(1);
